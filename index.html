@@ -1,19 +1,7 @@
 from requests import post,get
 import os
-import webbrowser
 
-ktra=get(url='https://tad0025.github.io/layma/dl-ma.html').text.split('\n')
-print(ktra[0])
-webbrowser.open(ktra[0])
-f=open('ma','a+')
-f=open('ma','r')
-ma=f.read()
-f.close()
-while ma!=ktra[1]: ma=input('nhap key: ')
-os.system('clear')
-f=open('ma','w')
-f.write(ma)
-f.close()
+
 
 url='https://nhiemvu.biz/api/jobembedded'
 head={'content-type':'application/x-www-form-urlencoded; charset=UTF-8'}
