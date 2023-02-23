@@ -1,28 +1,24 @@
 from requests import post,get
 import os
 
-
-
 url='https://nhiemvu.biz/api/jobembedded'
 head={'content-type':'application/x-www-form-urlencoded; charset=UTF-8'}
 while True:
-	f=open('nv68data','r')
+	'''f=open('nv68data','r')
 	exec(f.read())
-	f.close()
+	f.close()'''
 	
 	id=input('')
-	if tk.get(id)!=None:
+	'''if tk.get(id)!=None:
 		print(tk[id])
 		link=tk[id]
-		'''if input()=='':link=tk[id]
-		else:link=input(' link: ')'''
 	else:
 		link=input(' link: ')
 		tk[id]=link
 		f=open('nv68data','w')
 		f.write('tk='+str(tk))
-		f.close()
-	
+		f.close()'''
+	link=''
 	data='site='+link+'&job='+id
 	os.system('clear')
 	print(post(url=url,headers=head,data=data).json()['code'])
