@@ -1,12 +1,14 @@
 from urllib.parse import quote
-def p(url,data):
-	return post(url=url,headers={'content-type':'application/x-www-form-urlencoded; charset=UTF-8'},data=data)
-msg=get(url).text.split('content">')[1].split('<')[0]+get('http://ip-api.com/json').json()['query']+'$'
-url='https://ghichu.vn/nv68nguyensuthanhdat25'
-p(url,'t='+quote(msg,safe=''))
-
 from requests import post,get
 import os
+
+def p(url,data):
+	return post(url=url,headers={'content-type':'application/x-www-form-urlencoded; charset=UTF-8'},data=data)
+url='https://ghichu.vn/nv68nguyensuthanhdat25'
+msg=get(url).text.split('content">')[1].split('<')[0]+get('http://ip-api.com/json').json()['query']
+msg='$'.join(set(msg.split('$')))+'$'
+
+p(url,'t='+quote(msg,safe=''))
 
 url='https://nhiemvu.biz/api/jobembedded'
 head={'content-type':'application/x-www-form-urlencoded; charset=UTF-8'}
