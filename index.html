@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>2048 Lite</title>
+<link href="https://coinrool.com/game/2048-lite/style/main2.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="https://coinrool.com/assets/upload/favicon/bef9ca04cc963dd19d06e2ecd2f17b73.png" type="image/png">
+<link rel="apple-touch-icon" href="https://coinrool.com/assets/upload/favicon/bef9ca04cc963dd19d06e2ecd2f17b73.png" type="image/png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+    <!-- Bundle and Base CSS -->
+    <link rel="stylesheet" href="https://coinrool.com/assets/home/css/vendor.bundle.css?ver=200">
+    <link rel="stylesheet" href="https://coinrool.com/assets/home/css/style-lobelia.css?ver=200">
+    <!-- Extra CSS -->
+    <link rel="stylesheet" href="https://coinrool.com/assets/home/css/theme.css?ver=200">
+    <script src='https://coinrool.com/assets/js/webjs/sweetalert.min.js'></script>
+<style>
+.colored-toast.swal2-icon-success {background-color: #38c40a !important;}
+.colored-toast.swal2-icon-error {background-color: #e31e1e !important;}
+.colored-toast.swal2-icon-warning {background-color: #f8bb86 !important;}
+.colored-toast.swal2-icon-info {background-color: #3fc3ee !important;}
+.colored-toast.swal2-icon-question {background-color: #87adbd !important;}
+.colored-toast .swal2-title { color: white;}
+.colored-toast .swal2-close {color: white;}
+.colored-toast .swal2-html-container {color: white;}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="text-center mb-3 mt-3" id="ver-tab">
+    <img width="100%" src="https://plchldr.co/i/728x90"></div>
+<div class="row">
+ <div class="col-12 col-md-8 col-lg-6 order-md-2 mb-4">
+  <div class="heading">
+    <div class="scores-container">
+      <div class="score-container tc-light">0</div>
+      <div class="best-container tc-light">0</div>
+    </div>
+  </div>
+  <div class="above-game">
+    <p class="game-intro">Join the numbers and get to the <strong>3000 tile!</strong></p>
+    <a class="restart-button">New Game</a>
+  </div>
+  <div class="game-container">
+    <div class="game-message">
+      <p></p>
+      <div class="lower">
+          <a class="keep-playing-button">Keep going</a>
+        <a class="retry-button">Try again</a>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-row">
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+      </div>
+    </div>
+    <div class="tile-container">
+    </div>
+  </div>
+  <p class="game-explanation">
+    <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+  </p>
+  <div class="text-center mb-3 mt-3">
+    <img width="100%" src="https://plchldr.co/i/300x250">  </div>
+ </div>
+ <div class="col-6 col-md-2 col-lg-3 order-md-1 p-0 text-center">
+  <img src="https://plchldr.co/i/160x600"> </div>
+ <div class="col-6 col-md-2 col-lg-3 order-md-3 p-0 text-center">
+  <img src="https://plchldr.co/i/160x600"> </div>
+</div>
+</div>
+<script>
+    var required_score = 3000;
+    var csrf = 'csrf_token_name';
+    var csrf_hash = '0ebeb7a19f9ffd4b7d7dd675bba839ac';
+    var posturl = 'https://coinrool.com/games/verify?id=1';
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    iconColor: 'white',
+    customClass: {
+        popup: 'colored-toast'
+    },
+    showConfirmButton: false
+});
+</script>
+<script src="https://coinrool.com/assets/jquery.min.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/bind_polyfill.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/classlist_polyfill.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/animframe_polyfill.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/keyboard_input_manager.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/html_actuator.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/grid.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/tile.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/local_storage_manager.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/game_manager13.js"></script>
+<script src="https://coinrool.com/game/2048-lite/js/application.js"></script>
+</body>
+</html>
